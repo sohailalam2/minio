@@ -134,7 +134,7 @@ func newStorageRPC(ep *url.URL) (StorageAPI, error) {
 // Stringer interface compatible representation of network device.
 func (n *networkStorage) String() string {
 	// Remove the storage RPC path prefix, internal paths are meaningless.
-	serviceEndpoint := strings.TrimPrefix(n.rpcClient.ServiceEndpoint(), storageRPCPath)
+	serviceEndpoint := strings.TrimPrefix(n.rpcClient.ServiceEndpoint(), path.Join(minioReservedBucketPath, storageRPCPath))
 	return n.rpcClient.ServerAddr() + ":" + serviceEndpoint
 }
 
